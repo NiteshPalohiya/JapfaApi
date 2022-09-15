@@ -1,0 +1,57 @@
+﻿@model japfaCustomerProject.Models.Product_Master
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+@*<h1>Edit</h1>*@
+@*<head>
+    <link href="~/css/Create.css" rel="stylesheet" />
+</head>*@
+<style>
+    .rowdg{
+        padding-left:500px;
+    }
+    .zyx{
+        width:300px;
+    }
+    .abcde{
+       padding-left:500px;
+    }
+</style>
+
+<div class="row rowdg">
+    <div class="col-12 p-0 d-flex flex-column align-items-center justify-content-center">
+        <form asp-action="Edit" class="zyx">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <input asp-for="Productid" class="form-control" type="hidden" />
+                <span asp-validation-for="Productid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label">Product Name</label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>*@
+           
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="abcde">
+    <a asp-action="Index">Back to List</a>
+</div>
+

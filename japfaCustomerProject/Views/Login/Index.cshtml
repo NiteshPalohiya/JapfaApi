@@ -1,0 +1,44 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<link href="~/css/loginSheet.css" rel="stylesheet" />
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script type="text/javascript">
+        function preventBack() { window.history.forward(); }
+        setTimeout("preventBack()", 0);
+        window.onunload = function () { null };
+    </script>
+</head>
+<body>
+    <h1>Welcome To Japfa</h1>
+    <h2>Login Page</h2><br>
+    <div class="login">
+        <form id="login" method="get" action="Index">
+            <label>
+                <b>
+                    User Name
+                </b>
+            </label>
+            <input type="text" name="Uname" id="Uname" placeholder="Username">
+            <br><br>
+            <label>
+                <b>
+                    Password
+                </b>
+            </label>
+            <input type="Password" name="Pass" id="Pass" placeholder="Password">
+            <br><br>
+            @*<input type="button" name="log" id="log" value="Log In" onclick="window.location.href = 'https://localhost:44337/Dashboard';">*@
+            <input type="button" name="log" id="log" value="Log In" onclick="window.location.href = 'https://localhost:44337/Dashboard';">
+            <br><br>
+
+        </form>
+    </div>
+</body>
+</html>

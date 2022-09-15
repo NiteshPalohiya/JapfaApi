@@ -1,0 +1,138 @@
+﻿@model IEnumerable<japfaProject.Models.Place_Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<script src="~/Scripts/jquery-1.11.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.validate.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+<script src="~/Scripts/expressive.annotations.validate.js" type="text/javascript"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
+
+<style>
+    a {
+        color: blue;
+        padding-left: 200px;
+    }
+
+    footer button {
+        padding-right: 100px;
+    }
+</style>
+
+<p>
+    <a asp-action="Create">Place Order</a>
+</p>
+<table class="table col-12 text-center">
+    <thead>
+        <tr>
+            <th>
+                Product Name
+            </th>
+
+            <th>
+                Price
+            </th>
+            <th>
+                QTY
+            </th>
+        </tr>
+    </thead>
+    <tbody id="tblPOrder">
+        @foreach (var item in Model)
+        {
+            <tr id="@item.Productid">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Price)
+                </td>
+                <td>
+                    <input id="lblhddorderid" value="@item.Order_id" type="hidden" />
+
+                    <input id="lblhddPrice" value="@item.Price" type="hidden" />
+
+                    <input id="lblhddProductId" value="@item.Productid" type="hidden" />
+
+                    <input id="lblhddQtyId" value="@item.QTY" type="text" />
+
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
+<div class="form-group">
+    <input type="submit" value="Submit" class="btn btn-primary" onclick=" PlaceOrder()" />
+</div>
+
+<script>
+     function PlaceOrder() {
+        // debugger;
+         //var get_orderqty = $('#lblhddQtyId').val()
+         //alert(get_orderqty)
+         //var get_Productid = $('#lblhddProductId').val()
+         //alert(get_Productid)
+       
+         var customerorders = new Array();
+         $("#tblPOrder tr").each(function () {
+             var row = $(this).attr("id");
+           // debugger;
+            var get_orderqty = 0;
+             if ($(this).find("#lblhddQtyId").val() == "") {
+                get_orderqty = 0;
+             }
+            else {
+                 get_orderqty = $(this).find("#lblhddQtyId").val();
+              }
+             //var get_orderqty = $(this).find("#lblhddQtyId").val();
+
+             var get_price = $(this).find("#lblhddPrice").val();
+
+             var get_pid = $(this).find("#lblhddProductId").val();
+
+             var get_porderid = $(this).find("#lblhddorderid").val();
+           
+
+             var customerorder = {};
+
+            if (get_orderqty >= 0) {
+                customerorder.Order_id = get_porderid.toString();
+                customerorder.Productid = get_pid.toString();
+                customerorder.Price = get_price.toString();
+                customerorder.QTY = get_orderqty.toString();
+                customerorders.push(customerorder);
+            }
+              
+         });
+
+        // alert(JSON.stringify(customerorders));
+         $.ajax({
+                url: '@Url.Action("Create", "PlaceOrder")',
+                cache: false,
+                data: JSON.stringify(customerorders),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                type: 'POST',
+                success: function (data) {
+                //debugger;
+                window.location.href = "/PlaceOrder";
+                $("#PlaceOrder").removeClass("disabled");
+                },
+                error: function (xhr) {
+                    return false;
+                    
+                }
+            });
+
+        };
+
+
+</script>

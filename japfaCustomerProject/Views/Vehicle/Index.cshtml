@@ -1,0 +1,182 @@
+﻿@model IEnumerable<japfaProject.Models.Vehicle_Master>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+@*<h1>Vehicle</h1>*@
+<label>Vehicle</label>
+
+<p>
+    <a asp-action="Create">Add New</a>
+</p>
+
+<link href="~/css/Style.css" rel="stylesheet" />
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+@*<link href="~/css/VehicleSheet.css" rel="stylesheet" />*@
+
+<style>
+    label {
+        padding-left: 600px;
+        font-size: 40px;
+        font-style: initial;
+    }
+</style>
+
+<table class="table">
+    <thead>
+        <tr>
+            @*<th>
+                Code
+            </th>*@
+            <th>
+                Name
+            </th>
+            <th>
+                Vehicle Number
+            </th>
+            <th>
+                 Type
+            </th>
+            <th>
+                Space Capacity
+            </th>
+            <th>
+                Status
+            </th>
+            @*<th>
+                User Type
+            </th>*@
+            <th>
+                user id
+            </th>
+            <th class="func">
+                Functions
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>*@
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.Code)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VehicleCapacity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                @*<td>
+                    @Html.DisplayFor(modelItem=>item.UserType)
+                </td>*@
+                @*<td>
+                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatedDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedBy)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UpdatedDate)
+                </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserId)
+                </td>
+                <td class="func">
+                    @Html.ActionLink("Edit", "Edit", new { @id = item.Id })
+                    @Html.ActionLink("Details", "Details", new { @id = item.Id })                  
+                    <a href="javascript:;" data-toggle="modal" onclick="DeleteConfirmed('@item.Id')" data-target="#deleteVehicle">Delete</a>
+                   
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <div class="modal fade" id="deleteVehicle" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="">Delete Vehicle</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <input id="hId" type="hidden" />
+                    <div class="my-2">Please confirm if you want to delete this Vehicle?</div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>                    
+                    <a href="javascript:;" class="btn btn-primary " onclick="fnDeleteVehicle()" id="btndelete">Delete</a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function DeleteConfirmed(Id) {
+       // debugger;
+        $("#hId").val(Id);
+    };
+    function fnDeleteVehicle() {
+      //  debugger;
+        var resultId = $("#hId").val();
+            $.ajax({
+                url: '@Url.Action("DeleteConfirmed", "Vehicle")',
+                cache: false,
+                data: { id: resultId },
+                type: 'POST',
+                success: function (data) {
+                    if (data.success == true) {                      
+                        $("#deleteVehicle").hide();
+                        window.location.href = "/vehicle";
+                    }
+                    else {
+                        window.location.href = "/vehicle";
+                    }
+
+                },
+                error: function (xhr) {
+                    return false;
+
+                }
+            });
+    };
+
+
+    
+
+
+</script>

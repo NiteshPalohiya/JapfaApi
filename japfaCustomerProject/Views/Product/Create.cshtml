@@ -1,0 +1,60 @@
+﻿@model japfaCustomerProject.Models.Product_Master
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<partial name="_PartialView" />
+
+@*<head>
+    <link href="~/css/Create.css" rel="stylesheet" />
+</head>*@
+
+<style>
+    .row9{
+        padding-left:500px;
+    }
+    .dfg{
+        width:300px;
+    }
+    .tyg{
+        padding-left:500px;
+    }
+</style>
+
+<div class="row row9">
+    <div class="col-12 p-0 d-flex flex-column align-items-center justify-content-center">
+        <form asp-action="Create" class="dfg">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="Productid" class="control-label"></label>
+                <input asp-for="Productid" class="form-control" />
+                <span asp-validation-for="Productid" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label">Product Name</label>
+                <input asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label"></label>
+                <input asp-for="Price" class="form-control" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>*@
+           
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="tyg">
+    <a asp-action="Index">Back to List</a>
+</div>
+

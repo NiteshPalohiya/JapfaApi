@@ -1,0 +1,54 @@
+﻿.form_group {
+    width: 50% !important;
+    font-size: 18px;
+    text-transform: uppercase;
+    color: black;
+    text-decoration: none;
+}
+
+form {
+    width: 600px;
+}
+
+input {
+    width: 95% !important;
+}
+
+select {
+    font-size: 18px;
+}
+
+.form_salect {
+    width: 95% !important;
+}
+
+.form-group .submit_btn {
+    width: 97.5% !important;
+}
+
+
+/*.form-group {
+    font-size: 18px;
+    text-transform: uppercase;
+    padding: 0px 30px;
+    color: black;
+    text-decoration: none;
+}
+
+h4{
+    padding-left:600px;
+}
+
+form {
+    width:600px;
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+}
+input{
+    width:470px;
+}
+
+select{
+    font-size:18px;
+}*/

@@ -1,0 +1,65 @@
+﻿@model japfaProject.Models.Vehicle_Master
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+@*<head>
+    <link href="~/css/Create.css" rel="stylesheet" />
+</head>*@
+<style>
+    .row6{
+        padding-left:500px;
+    }
+    .yzx{
+        padding-left:500px;
+    }
+    .ty{
+        width:300px;
+    }
+</style>
+
+<div class="row row6">
+    <div class="col-12 p-0 d-flex flex-column align-items-center justify-content-center">
+        <form asp-action="Edit" class="ty">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VehicleNo" class="control-label">Vehicle Number</label>
+                <input asp-for="VehicleNo" class="form-control" />
+                <span asp-validation-for="VehicleNo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VehicleType" class="control-label"> Type</label>
+                @Html.DropDownListFor(x => x.VehicleType, new SelectList(ViewBag.list2))
+                @*<input asp-for="VehicleType" class="form-control" />*@
+                <span asp-validation-for="VehicleType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VehicleCapacity" class="control-label">Space Capacity</label>
+                <input asp-for="VehicleCapacity" class="form-control" />
+                <span asp-validation-for="VehicleCapacity" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="UserId" class="control-label">User Id</label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="yzx">
+    <a asp-action="Index">Back to List</a>
+</div>
+
